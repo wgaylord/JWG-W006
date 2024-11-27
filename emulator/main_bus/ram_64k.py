@@ -12,7 +12,7 @@ def init():
         data.append(0)
     
 def readByte(address):
-    if address >= BASE_ADDRESS and address <= END_ADDRESS and len(data) > (address - BASE_ADDRESS):
+    if address >= BASE_ADDRESS and address >= BASE_ADDRESS and len(data) > (address - BASE_ADDRESS):
         return data[address-BASE_ADDRESS]
     else:
         return 0
@@ -27,7 +27,7 @@ def readWord(address):
 def writeByte(address,value):
     if address >= BASE_ADDRESS and address <= END_ADDRESS and len(data) > (address - BASE_ADDRESS):
         data[address-BASE_ADDRESS] = value & 0xff
-    
+
 def writeWord(address,value):
     if address >= BASE_ADDRESS and address <= END_ADDRESS and len(data) > (address - BASE_ADDRESS):
         if address+1 >= BASE_ADDRESS and address+1 <= END_ADDRESS and len(data) > (address+1 - BASE_ADDRESS):

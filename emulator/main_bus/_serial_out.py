@@ -4,7 +4,7 @@ import os
 import tty
 from queue import Queue
 
-NAME = "Main Bus Serial Interface"
+NAME = "Output only serial bus"
 
 BASE_ADDRESS = 0xC0000000
 END_ADDRESS = 0xC0000005

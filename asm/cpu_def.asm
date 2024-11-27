@@ -1,3 +1,4 @@
+#once
 #subruledef register16
 {
    ZERO => 0
@@ -11,27 +12,42 @@
    F  => 7
    G  => 8
    H  => 9
+   I  => 10
+   J  => 11
+   K  => 12
+   L  => 13
+   M  => 14
+   N  => 15
+   
 }
 
 #subruledef register32
 {
+    ZERO => 0
+    ONE => 1
+
    AB => 2
    CD => 4
    EF => 6
    GH => 8
+   IJ => 10
+   KL => 12
+   MN => 14
    
-   PRAS => 10
-   PRBS => 11
+   PRAS => 16
+   PRBS => 17
    
-   PORA =>12
-   PORB => 13
+   PORA =>18
+   PORB => 19
    
-   APA => 14
-   APB => 15
+   APA => 20
+   APB => 21
    
-   SP => 16
+   SP => 22
    
-   RA => 17
+   RA => 23
+   
+   IR => 24
 }
 
 #subruledef condition
@@ -90,7 +106,7 @@
 	JUMP_ABS {addr: u32} => 0x21 @ 0x00 @ 0x00 @ 0x00 @ le(addr`32)
 	JUMP_REG {reg: register32} => 0x22 @ 0x00 @ reg`8 @ 0x00
 	
-	CALL_ABS {addr: u32} => 0x23 @ 0x00 @ 0x00 @ 0x00 @ addr`32
+	CALL_ABS {addr: u32} => 0x23 @ 0x00 @ 0x00 @ 0x00 @ le(addr`32)
 	CALL_REG {reg: register32} => 0x24 @ 0x00 @ reg`8 @ 0x00
 	
 	LOADw_imd {reg: register16}, {value: u16} => 0x25 @ 0x00 @ 0x00 @ reg`8 @ le(value`16) @ 0x00 @ 0x00
@@ -121,22 +137,33 @@
 	
 	INTERRUPT_REG {a: register16} => 0x37 @ a`8 @ 0x00 @ 0x00
 	
+	LOAD_STOREb {load: register16}, {store: register16}, {addr: u32} => 0x38 @ load`8 @ 0x00 @ store`8 @ le(addr`32)
+	LOAD_STOREw {load: register16}, {store: register16}, {addr: u32} => 0x39 @ load`8 @ 0x00 @ store`8 @ le(addr`32)
 	
-	P_NOP => 0x40 @ 0x00 @ 0x00 @ 0x00
-	
-	STORE_status {a: register16} => 0x41 @ a`8 @ 0x00 @ 0x00
-	
-	LOAD_PTI {c: register16} => 0x42 @ 0x00 @ 0x00 @ c`8
-	STORE_PTI {a: register16} => 0x43 @ a`8 @ 0x00 @ 0x00
-	
-	LOAD_IVT {c: register16} => 0x44 @ 0x00 @ 0x00 @ c`8
-	STORE_IVT {a: register16} => 0x45 @ a`8 @ 0x00 @ 0x00
-	
-	RETURN_INT => 0x46 @ 0x00 @ 0x00 @ 0x00
+	LOAD_STOREb_indirect {load: register16}, {store: register16}, {addr: register32} => 0x40 @ load`8 @ addr`8 @ store`8
+	LOAD_STOREw_indirect {load: register16}, {store: register16}, {addr: register32} => 0x41 @ load`8 @ addr`8 @ store`8
+
 	
 	
+	P_NOP => 0x80 @ 0x00 @ 0x00 @ 0x00
+	
+	STORE_status {a: register16} => 0x81 @ a`8 @ 0x00 @ 0x00
+	
+	LOAD_PTI {c: register32} => 0x82 @ 0x00 @ 0x00 @ c`8
+	STORE_PTI {a: register32} => 0x83 @ a`8 @ 0x00 @ 0x00
+	
+	LOAD_IVT {c: register32} => 0x84 @ 0x00 @ 0x00 @ c`8
+	STORE_IVT {a: register32} => 0x85 @ a`8 @ 0x00 @ 0x00
+	
+	RETURN_INT => 0x86 @ 0x00 @ 0x00 @ 0x00
+	DISABLE_INT => 0x87 @ 0x00 @ 0x00 @ 0x00
+	ENABLE_INT => 0x88 @ 0x00 @ 0x00 @ 0x00
 	
 	HALT => 0xff @ 0x00 @ 0x00 @ 0x00
 	
+	addr {add} => le(add`32)
+	
+	RTN => asm { JUMP_REG RA }
 	
 }
+

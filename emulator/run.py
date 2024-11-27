@@ -22,9 +22,14 @@ sys.stdout.flush()
 
 
 while True:
-    time.sleep(0.25)
-    cpu.tick()
+    #time.sleep(0.0001)
     #print("PC:",hex(cpu.PC))
     #cpu.registers.debug()
+    #for x in range(32):
+    #print(backplane.readByte(cpu.registers.APB))
+    #print("")
+    #print("========================================")
+    cpu.tick()
+    
     if cpu.PC == -1:
         break

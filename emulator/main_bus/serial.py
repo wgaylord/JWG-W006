@@ -23,7 +23,7 @@ def init():
     global input_thread
     global input_queue
 
-    #tty.setraw(sys.stdin)
+    tty.setraw(sys.stdin)
     input_queue = Queue(256)
 
     input_thread = threading.Thread(target=add_input, args=([input_queue]))
@@ -60,6 +60,7 @@ def readWord(address):
         return 0
 
 def writeByte(address,value):
+    global interrupt_settings
     if address >= BASE_ADDRESS and address <= END_ADDRESS:
         index = address - BASE_ADDRESS
         if index == 0:
@@ -84,10 +85,10 @@ def tick():
 def checkINT():
     ints = []
     if interrupt_settings & 1 == 1:
-        if not self.input_queue.empty():
+        if not input_queue.empty():
             ints.append(INTERRUPT_NUMS_STARTING)
     if interrupt_settings & 2 == 2:
-        if self.input_queue.full():
+        if input_queue.full():
             ints.append(INTERRUPT_NUMS_STARTING+1)
     if interrupt_settings & 4 == 4:
         if did_write:

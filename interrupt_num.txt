@@ -1,0 +1,15 @@
+
+
+Internal Interrupts
+    CPU 
+        None
+    
+    MMU
+        Page Fault - Called when trying to access a virtual address that is not mapped
+        
+    Serial
+        16 - Input Avaliable
+        17 - Input Queue Full
+        18 - Wrote Character
+        
+    

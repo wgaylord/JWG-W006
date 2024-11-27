@@ -1,0 +1,44 @@
+Intermediate
+Functions {'main': ([], 'void', [('funcStart', 'main'), ('ifStart', 0), ('load', 'serial'), ('loadConstant', 3221225472), ('cmp', '=='), ('ifCond', 0, '=='), ('load', 'TestString'), ('call', 'printString'), ('ifElse', 0), ('ifEnd', 0), ('funcEnd', 'main')]), 'printString': ([('str', 'char_pointer', 4, None)], 'void', [('funcStart', 'printString'), ('addLocal', ('str', 'char_pointer', 4, None)), ('popArg', ('str', 'char_pointer', 4, None)), ('addLocal', ('index', 'short', 2, 0)), ('whileStart', 0), ('load', 'str'), ('load', 'index'), ('arrayAccess', ''), ('loadConstant', 0), ('cmp', '!='), ('whileCond', 0, '!='), ('load', 'str'), ('load', 'index'), ('arrayAccess', ''), ('load', 'index'), ('loadConstant', 1), ('cmp', '+'), ('store', 'index'), ('whileEnd', 0), ('removeLocal', 'str'), ('removeLocal', 'index'), ('funcEnd', 'printString')])}
+
+main
+('funcStart', 'main')
+('ifStart', 0)
+('load', 'serial')
+('loadConstant', 3221225472)
+('cmp', '==')
+('ifCond', 0, '==')
+('load', 'TestString')
+('call', 'printString')
+('ifElse', 0)
+('ifEnd', 0)
+('funcEnd', 'main')
+
+printString
+('funcStart', 'printString')
+('addLocal', ('str', 'char_pointer', 4, None))
+('popArg', ('str', 'char_pointer', 4, None))
+('addLocal', ('index', 'short', 2, 0))
+('whileStart', 0)
+('load', 'str')
+('load', 'index')
+('arrayAccess', '')
+('loadConstant', 0)
+('cmp', '!=')
+('whileCond', 0, '!=')
+('load', 'str')
+('load', 'index')
+('arrayAccess', '')
+('load', 'index')
+('loadConstant', 1)
+('cmp', '+')
+('store', 'index')
+('whileEnd', 0)
+('removeLocal', 'str')
+('removeLocal', 'index')
+('funcEnd', 'printString')
+
+Globals {'serial': ('char_pointer', 4, 3221225472), 'TestString': ('char_array', 28, [84, 0, 104, 0, 105, 0, 115, 0, 32, 0, 105, 0, 115, 0, 32, 0, 97, 0, 32, 0, 116, 0, 101, 0, 115, 0, 116, 0])}
+Types {'int': 4, 'pointer': 4, 'short': 2, 'char': 1}
+StructData {}
+
